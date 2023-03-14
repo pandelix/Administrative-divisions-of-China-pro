@@ -7,20 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class Simplify extends Command
 {
-    /**
-     * 命令名称及签名
-     *
-     * @var string
-     */
-    protected $signature = 'simplify';
-
-    /**
-     * 命令描述
-     *
-     * @var string
-     */
-    protected $description = '将省市区数据进行简化';
-
     const ethnicGroups = [
         //56个民族
         '汉族', '蒙古族', '回族', '藏族', '维吾尔族', '苗族', '彝族', '壮族', '布依族', '朝鲜族', '满族', '侗族', '瑶族', '白族', '土家族', '哈尼族',
@@ -30,6 +16,18 @@ class Simplify extends Command
         //其他
         '各族'
     ];
+    /**
+     * 命令名称及签名
+     *
+     * @var string
+     */
+    protected $signature = 'simplify';
+    /**
+     * 命令描述
+     *
+     * @var string
+     */
+    protected $description = '将省市区数据进行简化';
 
     public function handle()
     {
@@ -59,6 +57,41 @@ class Simplify extends Command
 
     private static function simplify($raw_name, $level)
     {
+        if ($level == 3) {
+            switch ($raw_name) {
+                case '郑州航空港经济综合实验区':
+                    return '郑州空港经济区';
+                case '吉林中国新加坡食品区':
+                    return '吉林食品区';
+                case '石家庄循环化工园区':
+                    return '石家庄化工园区';
+            }
+            if (strpos($raw_name, '管理区') !== false) {
+                return preg_replace('/.*?市/', '', $raw_name);
+            }
+            if (strpos($raw_name, '高新') !== false) {
+                return preg_replace('/高新.*/', '高新区', $raw_name);
+            }
+            if (strpos($raw_name, '经济') !== false) {
+                return preg_replace('/经济.*/', '经开区', $raw_name);
+            }
+            if (strpos($raw_name, '高技术') !== false) {
+                return preg_replace('/高技术.*/', '高新区', $raw_name);
+            }
+            if (strpos($raw_name, '园区') !== false) {
+                return str_replace('现代', '', $raw_name);
+            }
+            if (strpos($raw_name, '城乡一体化') !== false) {
+                return str_replace('城乡一体化', '', $raw_name);
+            }
+            if (strpos($raw_name, '转型综合改革示范区')) {
+                return str_replace('转型综合改革示范区', '综改区', $raw_name);
+            }
+            if (strpos($raw_name, '文化旅游创意园区')) {
+                return str_replace('文化旅游创意园区', '文创园', $raw_name);
+            }
+        }
+
         $name1 = str_replace('自治', '', $raw_name);
         $name = self::ethnicReject($name1);
 
