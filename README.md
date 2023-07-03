@@ -39,3 +39,8 @@ https://github.com/pandelix/Administrative-divisions-of-China-pro/blob/master/ar
 ```mysql
 SELECT * FROM `areas` WHERE `name` <> short_name AND `level` = 3
 ```
+
+
+###
+现成sql数据:根目录下areas.sql
+现成json树状数据:根目录下areas.json
