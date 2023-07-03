@@ -37,5 +37,5 @@ https://github.com/pandelix/Administrative-divisions-of-China-pro/blob/master/ar
 ### 查看有效的简化
 
 ```mysql
-SELECT * FROM `areas` WHERE	`name` <> short_name AND `level` = 3
+SELECT * FROM `areas` WHERE `name` <> short_name AND `level` = 3
 ```

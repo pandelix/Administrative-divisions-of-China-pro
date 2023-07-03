@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Export;
 use App\Console\Commands\Simplify;
 use App\Console\Commands\ToMysql;
 use Illuminate\Console\Scheduling\Schedule;
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Simplify::class,
         ToMysql::class,
+        Export::class
     ];
 
     /**
