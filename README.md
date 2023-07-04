@@ -18,6 +18,10 @@ https://github.com/modood/Administrative-divisions-of-China/blob/master/dist/pca
 
 https://github.com/pandelix/Administrative-divisions-of-China-pro/blob/master/areas.sql
 
+### 简化结果json树状结构文件直接下载:
+
+https://github.com/pandelix/Administrative-divisions-of-China-pro/blob/master/areas.json
+
 ### 简化规则如下：
 
 - 省一级的"省"字都统一去掉了
